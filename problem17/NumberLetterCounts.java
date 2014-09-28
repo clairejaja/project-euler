@@ -75,9 +75,12 @@ public class NumberLetterCounts {
             // count the letters
             letterCount += numberWord.length();
         }
-        System.out.println(letterCount);
+        System.out.println("If all the numbers from 1 to " + num
+                            + " are wrriten out in words, " + letterCount
+                            + " letters would be used.");
     }
 
+    // note - could memoize results for faster runtime if needed
     public static String writeOutNumber(int num) {
         // if number is less than 20, just return the word
         if (num < 10) {
@@ -91,17 +94,24 @@ public class NumberLetterCounts {
             if (num % 10 == 0) {
                 return tens.get(num);
             }
-            return tens.get(num/10) + digits.get(num%10);
+            return tens.get(num-(num%10)) + digits.get(num%10);
         }
+        // now can only print out higher parts
+        // and call this function to print out the end
         if (num < 1000) {
-            return digits.get(num/100) + "hundred"
-                            + tens.get((num%100)/10) + digits.get((num%100)%10);
+            if (num % 100 == 0) {
+                return digits.get(num/100) + "hundred";
+            }
+            return digits.get(num/100) + "hundredand"
+                            + writeOutNumber(num%100);
         }
         if (num < 1000000) {
-            return digits.get(num/1000) + "thousand"
-                            + digits.get((num%1000)/100) + "hundred"
-                            + tens.get(((num%1000)%100)/10) + digits.get(((num%1000)%100)%10);
+            if (num % 1000 == 0) {
+                return writeOutNumber(num/1000) + "thousand";
+            }
+            return writeOutNumber(num/1000) + "thousandand"
+                        + writeOutNumber(num%1000);
         }
-        return "NOT IMPLEMENTED";
+        throw new Error("Numbers this large are not yet implemented!");
     }
 }
