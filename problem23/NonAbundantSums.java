@@ -30,20 +30,31 @@ import java.io.*;
 */
 
 public class NonAbundantSums {
+    private static int num = 28123;
     public static void main(String[] args) {
         // find all abundant numbers up to 28123-12
         System.err.println("Finding abundant numbers...");
-        ArrayList<Integer> abundantNumbers = calculateAbundantNumbersTo(28123-12);
+        ArrayList<Integer> abundantNumbers = calculateAbundantNumbersTo(num-12);
 
         // calculate all sums of abundant numbers
+        // not very efficient, probably better way of doing this
         System.err.println("Finding abundant number sums...");
         ArrayList<Integer> abundantNumberSums = new ArrayList<Integer>();
         for (int i = 0; i < abundantNumbers.size(); i++) {
             int numOne = abundantNumbers.get(i);
-            for (int j = i; j < abundantNumbers.size(); j++) {
-                int numTwo = abundantNumbers.get(j);
-                abundantNumberSums.add(numOne+numTwo);
+            int j = i;
+            int numTwo = abundantNumbers.get(j);
+            int sum = numOne+numTwo;
+            while (sum < 28123 && j < abundantNumbers.size()-1) {
+                abundantNumberSums.add(sum);
+                j++;
+                numTwo = abundantNumbers.get(j);
+                sum = numOne+numTwo;
             }
+            //for (int j = i; j < abundantNumbers.size(); j++) {
+            //    int numTwo = abundantNumbers.get(j);
+            //    abundantNumberSums.add(numOne+numTwo);
+            //}
         }
         // sort the sums
         Collections.sort(abundantNumberSums);
@@ -51,7 +62,7 @@ public class NonAbundantSums {
         int j = 0; // index of abundant number sum to compare to
         int sum = 0;
         // for each positive integer up to 28123,
-        for (int i = 1; i < 28123; i++) {
+        for (int i = 1; i < num; i++) {
             // figure out if it can be written as the sum of two abundant numbers
             // if not, add to final sum
             while (abundantNumberSums.get(j) < i) {
@@ -87,7 +98,7 @@ public class NonAbundantSums {
 
     public static ArrayList<Integer> getProperDivisors(int x) {
         ArrayList<Integer> properDivisors = new ArrayList<Integer>();
-        for (int i = 1; i < x/2; i++) {
+        for (int i = 1; i <= x/2; i++) {
             if (x % i == 0) {
                 properDivisors.add(i);
             }
