@@ -45,20 +45,19 @@ public class NonAbundantSums {
             int j = i;
             int numTwo = abundantNumbers.get(j);
             int sum = numOne+numTwo;
-            while (sum < 28123 && j < abundantNumbers.size()-1) {
+            while (sum <= 28123 && j < abundantNumbers.size()) {
                 abundantNumberSums.add(sum);
                 j++;
-                numTwo = abundantNumbers.get(j);
-                sum = numOne+numTwo;
+                if (j != abundantNumbers.size()) {
+                    numTwo = abundantNumbers.get(j);
+                    sum = numOne+numTwo;
+                }
             }
-            //for (int j = i; j < abundantNumbers.size(); j++) {
-            //    int numTwo = abundantNumbers.get(j);
-            //    abundantNumberSums.add(numOne+numTwo);
-            //}
         }
         // sort the sums
         Collections.sort(abundantNumberSums);
 
+        System.err.println("Adding up all non-sums...");
         int j = 0; // index of abundant number sum to compare to
         int sum = 0;
         // for each positive integer up to 28123,
@@ -84,7 +83,9 @@ public class NonAbundantSums {
         // do something to calculate abundant numbers
         ArrayList<Integer> abundantNumbers = new ArrayList<Integer>();
         for (int i = 1; i <= x; i++) {
+            //System.err.println(i);
             ArrayList<Integer> properDivisors = getProperDivisors(i);
+            //System.err.println(properDivisors);
             int sum = 0;
             for (int j = 0; j < properDivisors.size(); j++) {
                 sum += properDivisors.get(j);
@@ -98,9 +99,12 @@ public class NonAbundantSums {
 
     public static ArrayList<Integer> getProperDivisors(int x) {
         ArrayList<Integer> properDivisors = new ArrayList<Integer>();
-        for (int i = 1; i <= x/2; i++) {
+        for (int i = 1; i <= Math.sqrt(x); i++) {
             if (x % i == 0) {
                 properDivisors.add(i);
+                if (i != 1 && x/i != i) {
+                    properDivisors.add(x/i);
+                }
             }
         }
         return properDivisors;
