@@ -19,16 +19,18 @@ object LargestPrimeFactor {
   def main(args: Array[String]) {
     // calculate all primes up to square root of num
     var primes = calcPrimes(sqrt(num.toDouble).ceil.toInt)
-    var largestPrimeFactor = 1
-    // check each prime if it's a factor, update largest prime 
+    var largestPrimeFactor = 0
+    var i = primes.size - 1
+
     for (prime <- primes) {
       if (num % prime == 0 && prime > largestPrimeFactor) largestPrimeFactor = prime
     }
+
     println(largestPrimeFactor)
   }
 
   // calculate all primes up to x using sieve of Eratosthenes
-  def calcPrimes(x: Int): Iterable[Int] = {
+  def calcPrimes(x: Int): List[Int] = {
     var isPrime = mutable.Map((for (i <- 3 to x by 2) yield (i -> true)):_*)
     for (i <- 3 to sqrt(x.toDouble).ceil.toInt by 2) {
       if (isPrime(i)) {
@@ -38,6 +40,6 @@ object LargestPrimeFactor {
       }
     }
     
-    return isPrime.filter({case (num,bool) => bool}).map({case (num,bool) => num})
+    return isPrime.filter({case (num,bool) => bool}).map({case (num,bool) => num}).toList
   }
 }
