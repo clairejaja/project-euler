@@ -13,7 +13,7 @@
 * find the sum of the even-valued terms.
 */
 
-public class evenFibonacciNumbers
+public class EvenFibonacciNumbers
 {
 	public static void main(String[] args) {
 		// set up first three terms

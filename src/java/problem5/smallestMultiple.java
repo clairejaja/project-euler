@@ -10,7 +10,7 @@ import java.util.*; // for ArrayList
 * What is the smallest positive number that is evenly divisible by all of the numbers from 1 to 20?
 */
 
-public class smallestMultiple
+public class SmallestMultiple
 {
 	public static void main(String[] args) {
         boolean smallestMultipleFound = false;

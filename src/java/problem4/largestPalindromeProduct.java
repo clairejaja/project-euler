@@ -11,7 +11,7 @@ import java.util.*; // for ArrayList
 * Find the largest palindrome made from the product of two 3-digit numbers.
 */
 
-public class largestPalindromeProduct
+public class LargestPalindromeProduct
 {
 	public static void main(String[] args) {
         ArrayList<Integer> palindromeProducts = new ArrayList<Integer>();

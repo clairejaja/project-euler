@@ -11,7 +11,7 @@ import java.util.*; // for ArrayList
 * Find the sum of all the multiples of 3 or 5 below 1000.
 */
 
-public class multiplesOf3And5
+public class MultiplesOf3And5
 {
 	// a global variable for the integer to calculate multiples to
 	private static int num = 1000;

@@ -10,7 +10,7 @@ import java.util.*; // for ArrayList
 * What is the largest prime factor of the number 600851475143?
 */
 
-public class largestPrimeFactor
+public class LargestPrimeFactor
 {
 	// a global variable for the integer to calculate the largest prime factor of
 	private static long num = 600851475143L;
