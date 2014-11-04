@@ -14,19 +14,19 @@ public class smallestMultiple
 {
 	public static void main(String[] args) {
         boolean smallestMultipleFound = false;
-        long currentNumber = 20;
+        long currentNum = 2520;
 
         while (!smallestMultipleFound) {
-            if (isEvenlyDivisibleByAllNumbersToTwenty(currentNumber)) {
+            if (isEvenlyDivisibleToTwenty(currentNum)) {
                 smallestMultipleFound = true;
-                System.out.println(currentNumber);
+                System.out.println(currentNum);
             } else {
-                currentNumber++;
+                currentNum += 20;
             }
         }
     }
 
-    public static boolean isEvenlyDivisibleByAllNumbersToTwenty(long num) {
+    public static boolean isEvenlyDivisibleToTwenty(long num) {
        for (int i = 20; i >= 1; i--) {
             if (num % i != 0) {
                 return false;
