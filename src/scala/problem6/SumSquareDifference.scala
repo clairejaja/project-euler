@@ -3,34 +3,28 @@
 * @version 11/4/14
 *
 * Project Euler
-* Problem 5
-* Smallest multiple
+* Problem 6
+* Sum square difference
 *
-* 2520 is the smallest number that can be divided by each of the numbers
-* from 1 to 10 without any remainder.
-* What is the smallest positive number that is evenly divisible
-* by all the numbers from 1 to 20?
+* The sum of the squares of the first ten natural numbers is:
+* 1^2 + 2^2 + ... + 10^2 = 385
+* The square of the sum of the first ten natural numbers is:
+* (1 + 2 + ... + 10)^2 = 55^2 = 3025
+* Hence the difference between the sum of the squares of the first ten natural
+* numbers and the square of the sum is 3025 - 385 = 2640
+* Find the difference between the sum of the squares of the first one hundred
+* natural numbers and the square of the sum.
 */
 
-object SmallestMultiple {
-
+object SumSquareDifference {
   def main(args: Array[String]) {
-    var smallestMultipleFound = false
-    var currentNum = 2520
-    while (!smallestMultipleFound) {
-      if (isEvenlyDivisibleToTwenty(currentNum)) {
-        smallestMultipleFound = true
-        println(currentNum)
-      }
-      else currentNum += 20
-    }
-  }
+    // to calculate to
+    val num = 100
 
-  def isEvenlyDivisibleToTwenty(x:Int):Boolean = {
-    for (i <- 20 to 1 by -1) {
-      //println(x+"/"+i)
-      if (x % i != 0) return false
-    }
-    return true
+    def squareOfSum(x:Int):Int = {val sum = Range(1,x+1).sum; sum*sum}
+    def sumOfSquares(x:Int):Int = Range(1,x+1).map(i => i*i).sum
+    def difference(f: Int => Int, g: Int => Int, x: Int):Int = f(x) - g(x)
+
+    println(difference(squareOfSum,sumOfSquares,num))
   }
 }
